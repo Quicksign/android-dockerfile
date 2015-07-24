@@ -21,7 +21,7 @@ RUN apt-get -y install python-software-properties bzip2
 RUN add-apt-repository ppa:webupd8team/java
 
 # Make sure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
 
 # Update apt
 RUN apt-get update
@@ -40,8 +40,7 @@ RUN cd /tmp ; dpkg-deb -b . /fuse.deb
 RUN cd /tmp ; dpkg -i /fuse.deb
 
 # Install support libraries for 32-bit
-#RUN apt-get -y install ia32-libs-multiarch
-#RUN apt-get -y install ia32-libs
+RUN apt-get -y install ia32-libs-multiarch
 
 ENV ANDROID_SDK_VERSION r24.3.3
 ENV ANDROID_NDK_VERSION r10e
