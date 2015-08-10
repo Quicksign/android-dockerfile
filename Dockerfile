@@ -11,17 +11,14 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 RUN echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
 
-# Update apt
-RUN apt-get update
-
 # First, install add-apt-repository and bzip2
-RUN apt-get -y install python-software-properties bzip2
+RUN apt-get update && apt-get -y install python-software-properties bzip2
 
 # Add oracle-jdk6 to repositories
 RUN add-apt-repository ppa:webupd8team/java
 
 # Make sure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise universe" >> /etc/apt/sources.list
 
 # Update apt
 RUN apt-get update
@@ -30,7 +27,7 @@ RUN apt-get update
 RUN apt-get -y install oracle-java6-installer
 
 # Fake a fuse install (to prevent ia32-libs-multiarch package from producing errors)
-RUN apt-get install libfuse2
+RUN apt-get install -y  libfuse2
 RUN cd /tmp ; apt-get download fuse
 RUN cd /tmp ; dpkg-deb -x fuse_* .
 RUN cd /tmp ; dpkg-deb -e fuse_*
