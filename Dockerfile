@@ -36,6 +36,9 @@ RUN cd /tmp ; echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
 RUN cd /tmp ; dpkg-deb -b . /fuse.deb
 RUN cd /tmp ; dpkg -i /fuse.deb
 
+# Required by NDK
+RUN apt-get -y install build-essential
+
 # Install support libraries for 32-bit
 RUN apt-get -y install ia32-libs-multiarch
 
