@@ -1,6 +1,6 @@
 ### Android development environment for ubuntu precise (12.04 LTS)
 
-* Oracle Java JDK 6
+* Oracle Java JDK 8
 * Android SDK r24.3.3
 * Android NDK r10e
 * Apache Ant 1.9.6
