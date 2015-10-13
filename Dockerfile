@@ -20,13 +20,10 @@ RUN add-apt-repository ppa:webupd8team/java
 # Make sure the package repository is up to date
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise universe" >> /etc/apt/sources.list
 
-# Update apt
-RUN apt-get update
-
 # Install oracle-jdk6
-#RUN apt-get -y install oracle-java6-installer
+#RUN apt-get update && apt-get -y install oracle-java6-installer
 # Install oracle-jdk8
-RUN apt-get -y install oracle-java8-installer
+RUN apt-get update && apt-get -y install oracle-java8-installer
 
 # Fake a fuse install (to prevent ia32-libs-multiarch package from producing errors)
 RUN apt-get install -y  libfuse2
